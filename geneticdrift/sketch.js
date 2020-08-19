@@ -12,9 +12,9 @@ let counter = 0
 function setup() {
   createCanvas(960, 930);
   gen = 0
-  dom = 0
-  mixed = 26
-  rec = 74
+  dom = 33
+  mixed = 34
+  rec = 33
   time = 40
   repRate = 0.50
   popOverTime = geneticDrift(dom, mixed, rec, time, repRate)
@@ -236,8 +236,8 @@ function draw() {
   fill(255)
   triangle(573,633,573,669,603,651)
 
-  graph()
   //Graph
+  graph()
   plot.beginDraw();
   plot.drawBackground();
   plot.drawBox();
