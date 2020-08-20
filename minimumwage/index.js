@@ -103,12 +103,17 @@ function setupGraph(title, yAxisLim, yAxisTitle, xPos, yPos, array) {
     return plot
 }
 
+let workSlider
+let partSlider
+let minSlider
+let maxSlider
+
 function createCurve(attribute) { 
     plotArr = []
     for (let i = 0; i < 30; i++) { 
         sum = 0
         for (let j = 0; j < 100; j++) { 
-            sum += simulator(50, 50, 20, 90, i)[attribute]
+            sum += simulator(workSlider.value(), partSlider.value(), minSlider.value(), maxSlider.value(), i)[attribute]
         }
         plotArr.push(new GPoint(i,sum/100))
     }
@@ -123,12 +128,33 @@ let qualityGraph = null
 
 function setup(){ 
     createCanvas(1200, 800)
-    let qualities = createCurve("quality_of_life")
-    console.log(qualities)
-    qualityGraph = setupGraph("Effect of Minimum Wage on Worker's Quality of Life", 20, "Quality of Life(income-price ratio)", 10, 10, qualities)
+    workSlider = createSlider(0, 100, 50)
+    workSlider.position(900, 50)
+    partSlider = createSlider(0, 100, 50)
+    partSlider.position(900, 100)
+    minSlider = createSlider(0, 100, 20)
+    minSlider.position(900, 150)
+    maxSlider = createSlider(0, 100, 90)
+    maxSlider.position(900,200)
 }
 
 function draw(){ 
-    background(0)
+    background(255)
+    let qualities = createCurve("quality_of_life")
+    let employments = createCurve("employment")
+    let incomes = createCurve("average_wage")
+    let prices = createCurve("price_level")
+    qualityGraph = setupGraph("Effect of Minimum Wage on the Quality of Life of Workers", 20, "Quality of Life(income-price ratio)", 0, 0, qualities)
+    employmentGraph = setupGraph("Effect of Minimum Wage on Employment", 1, "% Employed", 450, 0, employments)
+    incomeGraph = setupGraph("Effect of Minimum Wage on Average Wages", 30, "Average Wage", 0, 300, incomes)
+    priceGraph = setupGraph("Effect of Minimum Wage on Price Levels", 2, "Commodity Prices", 450, 300, prices)
     drawGraph(qualityGraph)
+    drawGraph(employmentGraph)
+    drawGraph(incomeGraph)
+    drawGraph(priceGraph)
+    textSize(15)
+    text("Workers",1030,55)
+    text("Entry Level Workers",1030,105)
+    text("Minimum Employment %",1030,155)
+    text("Maximum Employment %",1030,205)
 }
