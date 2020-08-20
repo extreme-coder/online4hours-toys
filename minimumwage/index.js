@@ -132,9 +132,9 @@ function setup(){
     workSlider.position(900, 50)
     partSlider = createSlider(0, 100, 50)
     partSlider.position(900, 100)
-    minSlider = createSlider(0, 100, 20)
+    minSlider = createSlider(1, 100, 20)
     minSlider.position(900, 150)
-    maxSlider = createSlider(0, 100, 90)
+    maxSlider = createSlider(1, 100, 90)
     maxSlider.position(900,200)
 }
 
