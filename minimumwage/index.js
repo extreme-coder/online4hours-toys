@@ -113,7 +113,7 @@ function createCurve(attribute) {
     for (let i = 0; i < 30; i++) { 
         sum = 0
         for (let j = 0; j < 100; j++) { 
-            sum += simulator(workSlider.value(), partSlider.value(), minSlider.value(), maxSlider.value(), i)[attribute]
+            sum += simulator(workSlider.value(), partSlider.value(), (workSlider.value()+partSlider.value())*minSlider.value()/100, (workSlider.value()+partSlider.value())*maxSlider.value()/100, i)[attribute]
         }
         plotArr.push(new GPoint(i,sum/100))
     }
